@@ -1,0 +1,17 @@
+<table class='current-tasks table'>
+  <tr>
+    <td> Current Tasks </td>
+  </tr>
+  <tr>
+    <td ng-repeat="task in tasks">
+      {{ task.description }}
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <!-- input to add task -->
+      <input type="text" ng-model="newTask.title"/>
+      <a href='#' ng-click='addTask()'>Add Task</a>
+</td>
+  </tr>
+</table>
