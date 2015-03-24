@@ -1,7 +1,10 @@
-var taskList = angular.module('taskList', ['ui.router', 'firebase']);
+var taskList = angular.module('taskList', ['ui.router', 'firebase'])
 
-taskList.config(['$stateProvider', '$locationProvider', function($stateProvider, $locationProvider) {
-  $locationProvider.html5Mode(true);
+.config(['$stateProvider', '$locationProvider', function($stateProvider, $locationProvider) {
+  $locationProvider.html5Mode({
+    enabled: true,
+    requireBase: false
+  });
 
   $stateProvider.state('landing', {
     url: '/',
@@ -10,17 +13,17 @@ taskList.config(['$stateProvider', '$locationProvider', function($stateProvider,
   });
 }]);
 
-taskList.controller('Landing.controller', ['$scope', '$firebaseObject', function($scope, $firebaseObject) {
-  $scope.newTask.title = '';
-  var ref = new Firebase("https://https://vivid-inferno-1199.firebaseio.com/");
+taskList.controller('Landing.controller', ['$scope', '$firebaseArray', function($scope, $firebaseArray) {
+  var ref = new Firebase("https://vivid-inferno-1199.firebaseio.com/");
 
   $scope.tasks = $firebaseArray(ref);
+
+  $scope.newTask = { description: '', priority: '' };
 
   $scope.addTask = function() {
     $scope.tasks.$add({
       description: $scope.newTask.title
     });
-    $scope.newTask.title = '';
   };
 
 }]);
