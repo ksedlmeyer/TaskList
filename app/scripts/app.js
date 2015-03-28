@@ -22,10 +22,21 @@ taskList.controller('Landing.controller', ['$scope', '$firebaseArray', function(
 
   $scope.addTask = function() {
     $scope.tasks.$add({
-      description: $scope.newTask.title
+      description: $scope.newTask.description
     });
   };
-
 }]);
 
 
+<!-- tasklist.controller('Form.controller', ['$scope', function($scope) {
+    var Task = 'Wash dog';
+    $scope.newTask = {
+      description: function(newDescription) {
+        if (angular.isDefined(newDescription)) {
+          Task = newDescription;
+        }
+        return Task;
+      }
+    };
+  }]);
+  -->
