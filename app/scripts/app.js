@@ -15,7 +15,7 @@ var taskList = angular.module('taskList', ['ui.router', 'firebase'])
 
 taskList.controller('Landing.controller', ['$scope', '$firebaseArray', '$interval', function($scope, $firebaseArray, $interval) {
   var ref = new Firebase("https://vivid-inferno-1199.firebaseio.com/");
-
+  $scope.selectedItem = '';
   $scope.tasks = $firebaseArray(ref);
 
   $scope.priorities = [{name:'Low'}, {name:'Medium'}, {name:'High'}];
@@ -26,7 +26,7 @@ taskList.controller('Landing.controller', ['$scope', '$firebaseArray', '$interva
     $scope.tasks.$add({
       description: $scope.newTask.description,
       created: new Date(),
-      priority: selectedItem
+      priority: $scope.selectedItem
     });
 
     $scope.newTask.description = '';
