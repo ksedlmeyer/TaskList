@@ -1,27 +1,14 @@
-<table class='current-tasks table'>
-  <tr>
-    <td> Current Tasks </td>
-  </tr>
-
-  <!-- Creating form using ngModel
-  <div ng-controller="Form.Controller">
-  <form name="addTaskForm">
-    Task:
-    <input type="text" name="New Task"
-           ng-model="newTask.description"/>
-  </form>
-</div> 
--->
-  <tr ng-reapeat="task in tasks">
-    <td>
-      {{ task.description }}
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <!-- input to add task -->
-      <input name="task" type="text" ng-model="newTask.description"/>
-      <button ng-click='addTask()'>Add Task</button>
-</td>
-  </tr>
-</table>
+<h2> Current Tasks </h2>
+<ul class='current'>
+  <li ng-repeat="task in tasks">
+    {{ task.description }}
+  </li>
+  <li>
+    <!-- input to add task -->
+    <input name="task" type="text" ng-model="newTask.description"/>
+    <button ng-click='addTask()'>Add Task</button>
+    <select ng-model='selectedItem'>
+      <option ng-repeat="priority in priorities"> {{ priority.name }} </option>
+    </select>
+  </li>
+</ul>

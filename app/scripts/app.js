@@ -13,30 +13,35 @@ var taskList = angular.module('taskList', ['ui.router', 'firebase'])
   });
 }]);
 
-taskList.controller('Landing.controller', ['$scope', '$firebaseArray', function($scope, $firebaseArray) {
+taskList.controller('Landing.controller', ['$scope', '$firebaseArray', '$interval', function($scope, $firebaseArray, $interval) {
   var ref = new Firebase("https://vivid-inferno-1199.firebaseio.com/");
 
   $scope.tasks = $firebaseArray(ref);
 
+  $scope.priorities = [{name:'Low'}, {name:'Medium'}, {name:'High'}];
   $scope.newTask = { description: '', priority: '' };
+  
 
   $scope.addTask = function() {
     $scope.tasks.$add({
-      description: $scope.newTask.description
+      description: $scope.newTask.description,
+      created: new Date(),
+      priority: selectedItem
     });
+
+    $scope.newTask.description = '';
   };
-}]);
 
+/*
 
-<!-- tasklist.controller('Form.controller', ['$scope', function($scope) {
-    var Task = 'Wash dog';
-    $scope.newTask = {
-      description: function(newDescription) {
-        if (angular.isDefined(newDescription)) {
-          Task = newDescription;
-        }
-        return Task;
-      }
+  $interval(expire, 10000);
+
+  function expire(){
+    if (newTask.created > 10000){
+      tasks.remove();
     };
-  }]);
-  -->
+  };
+
+
+*/
+}]);

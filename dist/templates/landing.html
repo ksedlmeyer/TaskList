@@ -1,0 +1,14 @@
+<h2> Current Tasks </h2>
+<ul class='current'>
+  <li ng-repeat="task in tasks">
+    {{ task.description }}
+  </li>
+  <li>
+    <!-- input to add task -->
+    <input name="task" type="text" ng-model="newTask.description"/>
+    <button ng-click='addTask()'>Add Task</button>
+    <select ng-model='selectedItem'>
+      <option ng-repeat="priority in priorities"> {{ priority.name }} </option>
+    </select>
+  </li>
+</ul>
