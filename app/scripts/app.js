@@ -21,33 +21,30 @@ taskList.controller('Landing.controller', ['$scope', '$firebaseArray', '$interva
   $scope.priorities = [{name:'Low'}, {name:'Medium'}, {name:'High'}];
   $scope.newTask = { description: '', priority: '' };
   
-
   $scope.addTask = function() {
     $scope.tasks.$add({
       description: $scope.newTask.description,
-      created: new Date(),
+      created: new Date().getTime(),
       priority: $scope.selectedItem,
       expired: false
     });
-
     $scope.newTask.description = '';
   };
 
 // our new expired function
 var expireTasks= function() {
-var today = new Date(),
-    now = today.getTime();
+  var now = new Date().getTime();
 
-// if more than 5 seconds old, expire it
-$scope.tasks.forEach(function(task){
-  var createdDate = task.created,
-  createdTime = createdDate.getTime();
-  console.log(now - createdTime);
-  // if task was created more than five seconds ago.. ( we can change this time later )
-  if ((now - createdTime) >= 5000){
-    task.expired = true;
-  }
-});
+  // if more than 5 seconds old, expire it
+  $scope.tasks.forEach(function(task){
+    var createdTime = task.created;
+    console.log( task.description + " is " +  ( ( now - createdTime ) / 1000 ) + " seconds old!" );
+    // if task was created more than five seconds ago.. ( we can change this time later )
+    if ((now - createdTime) >= 5000){
+      task.expired = true;
+      console.log(task.description + ' is expired.'); // see the task that was just expired in the console
+    }
+  });
 };
 
 // And we call our function like..
