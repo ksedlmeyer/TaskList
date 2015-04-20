@@ -26,6 +26,7 @@ taskList.controller('Landing.controller', ['$scope', '$firebaseArray', '$interva
       description: $scope.newTask.description,
       created: new Date().getTime(),
       priority: $scope.selectedItem,
+      done: false,
       expired: false
     });
     $scope.newTask.description = '';
