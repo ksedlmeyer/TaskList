@@ -1,0 +1,17 @@
+
+<h2> Current Tasks </h2>
+<table>
+  <tr ng-repeat="task in tasks">
+    <td> {{ task.description }} </td>
+    <td> {{ task.priority }} </td>
+  </tr>
+  <tr>
+    <!-- input to add task -->
+    <input name="task" type="text" ng-model="newTask.description"/>
+    <button ng-click='addTask()'>Add Task</button>
+    <select ng-model='selectedItem'>
+      <option ng-repeat="priority in priorities"> {{ priority.name }} </option>
+    </select>
+  </tr>
+</table>
+
