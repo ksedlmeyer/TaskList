@@ -1,0 +1,7 @@
+<h2> Past Tasks </h2>
+<table>
+  <tr ng-show="task.expired == false" ng-repeat="task in tasks">
+    <td> {{ task.description }} </td>
+    <td> {{ task.priority }} </td>
+  </tr>
+</table>

@@ -11,6 +11,12 @@ var taskList = angular.module('taskList', ['ui.router', 'firebase'])
     controller: 'Landing.controller',
     templateUrl: '/templates/landing.html'
   });
+
+  $stateProvider.state('past', {
+    url: '/past',
+    controller: 'Past.controller',
+    templateUrl: '/templates/past.html'
+  });
 }]);
 
 taskList.controller('Landing.controller', ['$scope', '$firebaseArray', '$interval', function($scope, $firebaseArray, $interval) {
