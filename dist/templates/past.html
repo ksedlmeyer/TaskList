@@ -4,8 +4,12 @@
     <th>Task</th>
     <th>Priority</th>
   </tr>
-  <tr ng-show="expiredTask.expired || completedTask.completed" ng-repeat="expiredTask in tasks">
+  <tr ng-show="expiredTask.expired" ng-repeat="expiredTask in tasks">
     <td> {{ expiredTask.description }} </td>
     <td> {{ expiredTask.priority }} </td>
+  </tr>
+  <tr ng-show="completedTask.completed" ng-repeat="completedTask in tasks">
+    <td> {{ completedTask.description }} </td>
+    <td> {{ completedTask.priority }} </td>
   </tr>
 </table>

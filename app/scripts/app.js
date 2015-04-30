@@ -38,8 +38,9 @@ taskList.controller('Landing.controller', ['$scope', '$firebaseArray', '$interva
     $scope.newTask.description = '';
   };
 
-  var completeTask = function() {
-    
+  $scope.completeTask = function(task) {
+    task.completed = true;
+    $scope.tasks.$save(task);
   };
 
 // our new expired function
