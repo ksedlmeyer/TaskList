@@ -15,7 +15,7 @@ var taskList = angular.module('taskList', ['ui.router', 'firebase'])
 
   $stateProvider.state('past', {
     url: '/past',
-    controller: 'Past.controller',
+    controller: 'Landing.controller',
     templateUrl: '/templates/past.html'
   });
 }]);
@@ -33,10 +33,14 @@ taskList.controller('Landing.controller', ['$scope', '$firebaseArray', '$interva
       description: $scope.newTask.description,
       created: new Date().getTime(),
       priority: $scope.selectedItem,
-      done: false,
+      completed: false,
       expired: false
     });
     $scope.newTask.description = '';
+  };
+
+  var completeTask = function() {
+    
   };
 
 // our new expired function
@@ -47,9 +51,10 @@ var expireTasks= function() {
   $scope.tasks.forEach(function(task){
     var createdTime = task.created;
     console.log( task.description + " is " +  ( ( now - createdTime ) / 1000 ) + " seconds old!" );
-    // if task was created more than five seconds ago.. ( we can change this time later )
-    if ((now - createdTime) >= 5000){
+    // if task was created more than seven days ago..
+    if ((now - createdTime) >= 604800000 && !task.expired){
       task.expired = true;
+      $scope.tasks.$save(task);
       console.log(task.description + ' is expired.'); // see the task that was just expired in the console
     }
   });

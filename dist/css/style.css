@@ -1,5 +1,37 @@
+.navbar-header {
+  text-align: left;
+  font-family: Tahoma, Geneva, sans-serif; }
+
+h2 {
+  font-family: Verdana, Geneva, sans-serif; }
+
 table {
-  border: 2px solid #a9a9a9; }
-  table td {
-    padding: 5px;
-    background-color: #F2F2F2; }
+  border-radius: 5px;
+  border-spacing: 1px;
+  width: 400px;
+  font-family: Verdana, Geneva, sans-serif; }
+
+td {
+  padding: 5px;
+  background-color: #d3d3d3;
+  height: 100%;
+  width: 100%; }
+
+th {
+  text-transform: uppercase;
+  font-size: 90%; }
+
+.button {
+  display: inline-block;
+  font-family: Verdana, Geneva, sans-serif;
+  color: #989898;
+  text-decoration: none;
+  font-size: 14px;
+  text-align: center;
+  padding: 5px;
+  width: 100%;
+  height: 100%;
+  position: relative; }
+
+.link {
+  background-color: #2a3439; }
