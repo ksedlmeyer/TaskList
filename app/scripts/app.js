@@ -1,4 +1,4 @@
-var taskList = angular.module('taskList', ['ui.router', 'firebase'])
+var taskList = angular.module('taskList', ['ui.router', 'ngTouch', 'firebase'])
 
 .config(['$stateProvider', '$locationProvider', function($stateProvider, $locationProvider) {
   $locationProvider.html5Mode({
