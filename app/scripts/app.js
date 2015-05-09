@@ -33,7 +33,8 @@ taskList.controller('Landing.controller', ['$scope', '$firebaseArray', '$interva
       created: new Date().getTime(),
       priority: $scope.selectedItem,
       completed: false,
-      expired: false
+      expired: false,
+      deleted: false
     });
     $scope.newTask.description = '';
   };
@@ -43,29 +44,29 @@ taskList.controller('Landing.controller', ['$scope', '$firebaseArray', '$interva
     $scope.tasks.$save(task);
   };
 
+  $scope.removeTask = function(task) {
+    task.deleted = true;
+    $scope.tasks.$save(task);   
+  };
+
 // our new expired function
-var expireTasks= function() {
-  var now = new Date().getTime();
+  var expireTasks= function() {
+    var now = new Date().getTime();
 
   // if more than 5 seconds old, expire it
-  $scope.tasks.forEach(function(task){
-    var createdTime = task.created;
-    console.log( task.description + " is " +  ( ( now - createdTime ) / 1000 ) + " seconds old!" );
+    $scope.tasks.forEach(function(task){
+      var createdTime = task.created;
+      console.log( task.description + " is " +  ( ( now - createdTime ) / 1000 ) + " seconds old!" );
     // if task was created more than seven days ago..
-    if ((now - createdTime) >= 604800000 && !task.expired){
-      task.expired = true;
-      $scope.tasks.$save(task);
-      console.log(task.description + ' is expired.'); // see the task that was just expired in the console
-    }
-  });
-};
+      if ((now - createdTime) >= 604800000 && !task.expired){
+        task.expired = true;
+        $scope.tasks.$save(task);
+        console.log(task.description + ' is expired.'); // see the task that was just expired in the console
+      }
+    });
+  };
 
 // And we call our function like..
- $interval(expireTasks, 10000);
-
- $scope.removeTask = function(task) {
-  $scope.tasks.$remove(task);
-  $scope.tasks.$save(task);
- }
+  $interval(expireTasks, 10000);
 
 }]);
