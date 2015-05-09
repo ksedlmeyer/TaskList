@@ -64,6 +64,11 @@ var expireTasks= function() {
 // And we call our function like..
  $interval(expireTasks, 10000);
 
+ $scope.removeTask = function(task) {
+  $scope.tasks.$remove(!task.expired || !task.completed);
+  $scope.tasks.$save(task);
+ }
+
 }]);
 
 },{}]},{},[1]);
