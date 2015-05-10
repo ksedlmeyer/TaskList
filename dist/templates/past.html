@@ -4,14 +4,14 @@
     <th>Task</th>
     <th>Priority</th>
   </tr>
-  <tr ng-show="'expiredTask.expired' || '!expiredTask.deleted' || '!showActions'" ng-swipe-left = "showActions = true" ng-repeat="expiredTask in tasks">
+  <tr ng-show="expiredTask.expired || !expiredTask.deleted || !showActions" ng-swipe-left = "showActions = true" ng-repeat="expiredTask in tasks">
     <td> {{ expiredTask.description }} </td>
     <td> {{ expiredTask.priority }} </td>
     <td class='link' ng-show="showActions" ng-swipe-right= "showActions = false">
       <a class='button' href='#' ng-click='removeTask(expiredTask)'>DELETE</a>
     </td>
   </tr>
-  <tr ng-show="'completedTask.completed' || '!completedTask.deleted' || '!showActions'" ng-swipe-left = "showActions = true" ng-repeat="completedTask in tasks">
+  <tr ng-show="completedTask.completed || !completedTask.deleted || !showActions" ng-swipe-left = "showActions = true" ng-repeat="completedTask in tasks">
     <td> {{ completedTask.description }} </td>
     <td> {{ completedTask.priority }} </td>
     <td class='link' ng-show="showActions" ng-swipe-right= "showActions = false">
